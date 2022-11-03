@@ -1,6 +1,3 @@
-import email
-from email.policy import default
-from enum import unique
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
@@ -59,7 +56,7 @@ class Account(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
     
-    object = MyAccountManager()
+    objects = MyAccountManager()
     
     def __str__(self):
         return self.email
