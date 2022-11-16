@@ -13,16 +13,16 @@ class Product(models.Model):
     stock           = models.IntegerField()
     is_available    = models.BooleanField(default= True)
     category        = models.ForeignKey(Category, on_delete = models.CASCADE)
-    created_date     = models.DateTimeField(auto_now_add = True)
+    created_date    = models.DateTimeField(auto_now_add = True)
     modified_date   = models.DateTimeField(auto_now = True)
-    
+
     def __str__(self) :
         return self.product_name
 
     def get_url(self):
         return reverse('product_detail', args = [self.category.slug, self.slug] )
             
-    @property 
+    @property
     def imageURL(self):
         try:
             url = self.images.url 
@@ -30,14 +30,15 @@ class Product(models.Model):
             url = ''
         return url
     
-    
-    
+  
 class VariationManager(models.Manager):
     def colors(self):
         return super(VariationManager, self).filter(variation_category='color', is_active = True)
-    
+
+
     def sizes(self):
         return super(VariationManager, self).filter(variation_category='size', is_active = True)
+
 
 variation_category_choice=(
     ('color', 'color'),
