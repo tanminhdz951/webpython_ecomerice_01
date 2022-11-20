@@ -31,7 +31,10 @@
                             <div class="invoice-from">
                                 <ul class="list-unstyled text-right">
                                     <li><strong>Invoiced To</strong></li>
-                                    
+                                    <li>{{ order.last_name }}</li>
+                                    <li>{{ order.full_address }}</li>
+                                    <li>{{ order.state }}, {{ order.city }}</li>
+                                    <li>{{ order.country }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -75,7 +78,7 @@
                                                     </p>
                                                 </td>
                                                 <td class="text-center">{{item.quantity}} </td>
-                                                <td class="text-center">${{item.product_price}}</td>
+                                                <td class="text-center">${{item.total_singer_product}}</td>
                                             </tr>
                                             {%endfor%}
                                            
