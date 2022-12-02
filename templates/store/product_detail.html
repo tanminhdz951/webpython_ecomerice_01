@@ -9,11 +9,19 @@
             <div class="row no-gutters">
                 <aside class="col-md-6">
                     <article class="gallery-wrap">
-                        <div class="img-big-wrap">
-                            <a href="#"><img src="{{single_product.imageURL}}" /></a>
+                        <div class="img-big-wrap mainImage">
+                           <center><img src="{{single_product.imageURL}}" /></center>
                         </div>
                         <!-- img-big-wrap.// -->
                     </article>
+                    <ul class="thumb">
+                        <li>
+                            <a href="{{single_product.imageURL}}"target="mainImage"><img src="{{single_product.imageURL}}" /></a>
+                            {%for image in product_gallery %}
+                            <a href="{{image.image.url}}" target="mainImage"><img src="{{image.image.url}}" alt="Product image" srcset=""></a>
+                            {%endfor%}
+                        </li>
+                    </ul>
                     <!-- gallery-wrap .end// -->
                 </aside>
                 <main class="col-md-6 border-left">
@@ -65,22 +73,10 @@
                             {% if single_product.stock <= 0 %}
                                 <h5 class="text-danger">Out Of Stock </h5>
                             {% else %}
-                                {% comment %} {%if in_cart %}
-                                <a href="#" class="btn btn-success">
-                                    <span class="text">Added to cart</span>
-                                    <i class="fas fa-check"></i>
-                                </a>
-                                <a href="{%url 'cart' %}" class="btn btn-outline-primary"
-                                    <span class="text">View Cart</span>
-                                    <i class="fas fa-eye"></i>
-                                </a>
-
-                                {% else %} {% endcomment %}
                                     <button type="submit" class="btn btn-primary">
                                         <span class="text">Add to cart</span>
                                         <i class="fas fa-shopping-cart"></i>
                                     </button>
-                                {% comment %} {% endif %} {% endcomment %}
                             {% endif %}
                             
                             
