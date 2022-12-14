@@ -17,14 +17,20 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+from pathlib import Path
+from decouple import config
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7#h!1*!p3n)c=ff3+40uln4rh_rae4m7u&5(q!t3v4gb(!&q+('
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
+
 
 ALLOWED_HOSTS = []
 
@@ -43,6 +49,7 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
+    'admin_honeypot',
 ]
 
 MIDDLEWARE = [
@@ -155,15 +162,13 @@ MESSAGE_TAGS = {
 
 
 # SMTP configuration
-MY_EMAIL =  "sau955304@gmail.com"
-MY_PASSWORD = "wpblvjksrhfbkjtg"
-# MY_PASSWORD = "phuongkute1"
-EMAIL_FROM_USER = MY_EMAIL
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = MY_EMAIL
-EMAIL_HOST_PASSWORD = MY_PASSWORD
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
+
+EMAIL_FROM_USER = config('EMAIL_FROM_USER')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS',default=True,cast=bool)
+EMAIL_PORT = config('EMAIL_PORT',cast=int )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

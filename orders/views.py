@@ -65,20 +65,7 @@ def payments(request):
         order_product.save()
         
         
-        # order_product = OrderProduct.objects.create(
-        #     order = order,
-        #     user = request.user,
-        #     payment = payment,
-        #     product = cart_item.product,
-        #     quantity = cart_item.quantity,
-        #     product_price = cart_item.product.price,
-        #     ordered = order.is_ordered
-        # )
-        
-        # #Send order item from cart item to order product
-        # product_variation = cart_item.variations.all()
-        # order_product.variations.set(product_variation)
-        # order_product.save()
+
 
         #Reduce quantity from product
         product = Product.objects.get(id = cart_item.product.id)
